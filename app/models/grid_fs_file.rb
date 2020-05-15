@@ -64,5 +64,9 @@ class GridFsFile
     self.class.id_criteria @id
   end
 
-  
+  def self.find id
+    f = mongo_client.database.fs.find(id_criteria(id)).first
+    return f.nil? ? nil : GridFsFile.new(f)
+  end
+
 end

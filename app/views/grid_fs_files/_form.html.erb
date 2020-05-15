@@ -33,27 +33,27 @@
 
   <div class="field">
     <%= form.label :uploadDate %>
-    <%= form.text_field :uploadDate %>
+    <%= form.text_field :uploadDate, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :length %>
-    <%= form.number_field :length %>
+    <%= form.number_field :length, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :chunkSize %>
-    <%= form.number_field :chunkSize %>
+    <%= form.number_field :chunkSize, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :md5 %>
-    <%= form.text_field :md5 %>
+    <%= form.text_field :md5, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :contents %>
-    <%= form.text_field :contents %>
+    <%= form.file_field :contents %>
   </div>
 
   <div class="actions">

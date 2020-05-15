@@ -1,5 +1,5 @@
 class GridFsFilesController < ApplicationController
-  before_action :set_grid_fs_file, only: [:show, :edit, :update, :destroy]
+  before_action :set_grid_fs_file, only: [:show, :edit, :update, :destroy, :contents]
 
   # GET /grid_fs_files
   # GET /grid_fs_files.json
@@ -59,6 +59,11 @@ class GridFsFilesController < ApplicationController
       format.html { redirect_to grid_fs_files_url, notice: 'Grid fs file was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def contents
+    send_data @grid_fs_file.contents,
+              { filename: @grid_fs_file.filename, type: @grid_fs_file.contentType, disposition: 'inline' }
   end
 
   private

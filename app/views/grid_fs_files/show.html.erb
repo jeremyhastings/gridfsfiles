@@ -42,7 +42,8 @@
 
 <p>
   <strong>Contents:</strong>
-  <%= @grid_fs_file.contents %>
+  <%#= @grid_fs_file.contents %>
+  <img height="1000px" width="1300px" src= <%= contents_path("#{ @grid_fs_file.id }") %>/>
 </p>
 
 <%= link_to 'Edit', edit_grid_fs_file_path(@grid_fs_file) %> |

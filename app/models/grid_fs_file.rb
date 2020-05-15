@@ -56,4 +56,13 @@ class GridFsFile
     end
   end
 
+  def self.id_criteria id
+    { _id:BSON::ObjectId.from_string(id) }
+  end
+
+  def id_criteria
+    self.class.id_criteria @id
+  end
+
+  
 end

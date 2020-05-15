@@ -35,4 +35,8 @@ class GridFsFile
     @contents = params[:contents]
   end
 
+  def self.mongo_client
+    @@db ||= Mongoid::Clients.default
+  end
+
 end

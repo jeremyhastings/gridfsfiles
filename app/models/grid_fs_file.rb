@@ -81,4 +81,12 @@ class GridFsFile
     end
   end
 
+  def self.all
+    files = []
+    mongo_client.database.fs.find.each do | r |
+      files << GridFsFile.new(r)
+    end
+    return files
+  end
+
 end

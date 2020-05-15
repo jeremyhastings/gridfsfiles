@@ -167,6 +167,13 @@ development:
     # (default: false)
     # use_utc: false
 
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGOLAB_URI'] %>
+      options:
+        connect_timeout: 15
+
 test:
   clients:
     default:

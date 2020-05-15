@@ -69,4 +69,16 @@ class GridFsFile
     return f.nil? ? nil : GridFsFile.new(f)
   end
 
+  def contents
+    Rails.logger.debug { "getting gridfs content #{@id}" }
+    f = self.class.mongo_client.database.fs.find_one(id_criteria)
+    if f
+      buffer = ""
+      f.chunks.reduce([]) do |x, chunk|
+        buffer << chunk.data.data
+      end
+      return buffer
+    end
+  end
+
 end

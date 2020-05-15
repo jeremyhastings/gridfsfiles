@@ -39,4 +39,21 @@ class GridFsFile
     @@db ||= Mongoid::Clients.default
   end
 
+  def save
+    description = {}
+    description[:filename] = @filename if !@filename.nil?
+    description[:content_type] = @contentType if !@contentType.nil?
+    if @author || @topic
+      description[:metadata] = {}
+      description[:metadata][:author] = @author if !@author.nil?
+      description[:metadata][:topic] = @topic if !@topic.nil?
+    end
+
+    if @contents
+      grid_file = Mongo::Grid::File.new(@contents.read, description)
+      id = self.class.mongo_client.database.fs.insert_one(grid_file)
+      @id = id.to_s
+    end
+  end
+
 end

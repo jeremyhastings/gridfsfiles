@@ -89,4 +89,12 @@ class GridFsFile
     return files
   end
 
+  def update params
+    # TODO
+  end
+
+  def destroy
+    self.class.mongo_client.database.fs.find(id_criteria).delete_one
+  end
+
 end

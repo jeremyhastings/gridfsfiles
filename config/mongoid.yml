@@ -173,7 +173,7 @@ production:
       uri: <%= ENV['MONGODB_URI'] %>
       options:
         connect_timeout: 15
-        retryWrites: false
+        retry_writes: false
 
 test:
   clients:

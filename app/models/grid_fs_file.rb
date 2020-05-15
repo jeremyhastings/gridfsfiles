@@ -56,4 +56,45 @@ class GridFsFile
     end
   end
 
+  def self.id_criteria id
+    { _id:BSON::ObjectId.from_string(id) }
+  end
+
+  def id_criteria
+    self.class.id_criteria @id
+  end
+
+  def self.find id
+    f = mongo_client.database.fs.find(id_criteria(id)).first
+    return f.nil? ? nil : GridFsFile.new(f)
+  end
+
+  def contents
+    Rails.logger.debug { "getting gridfs content #{@id}" }
+    f = self.class.mongo_client.database.fs.find_one(id_criteria)
+    if f
+      buffer = ""
+      f.chunks.reduce([]) do |x, chunk|
+        buffer << chunk.data.data
+      end
+      return buffer
+    end
+  end
+
+  def self.all
+    files = []
+    mongo_client.database.fs.find.each do | r |
+      files << GridFsFile.new(r)
+    end
+    return files
+  end
+
+  def update params
+    # TODO
+  end
+
+  def destroy
+    self.class.mongo_client.database.fs.find(id_criteria).delete_one
+  end
+
 end

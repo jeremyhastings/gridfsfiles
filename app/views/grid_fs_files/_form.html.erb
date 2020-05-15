@@ -1,0 +1,62 @@
+<%= form_with(model: grid_fs_file, local: true) do |form| %>
+  <% if grid_fs_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(grid_fs_file.errors.count, "error") %> prohibited this grid_fs_file from being saved:</h2>
+
+      <ul>
+        <% grid_fs_file.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :filename %>
+    <%= form.text_field :filename %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contentType %>
+    <%= form.text_field :contentType %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= form.label :topic %>
+    <%= form.text_field :topic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uploadDate %>
+    <%= form.text_field :uploadDate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :length %>
+    <%= form.number_field :length %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chunkSize %>
+    <%= form.number_field :chunkSize %>
+  </div>
+
+  <div class="field">
+    <%= form.label :md5 %>
+    <%= form.text_field :md5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contents %>
+    <%= form.text_field :contents %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
